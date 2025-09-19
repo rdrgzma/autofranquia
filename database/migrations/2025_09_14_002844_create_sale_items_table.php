@@ -15,6 +15,9 @@ class CreateSaleItemsTable extends Migration
             $table->integer('qty')->default(1);
             $table->decimal('unit_price', 12, 2)->default(0);
             $table->decimal('subtotal', 12, 2)->default(0);
+            $table->foreignId('service_id')->nullable()->constrained()->nullOnDelete();
+            $table->enum('type', ['product', 'service'])->default('product');
+            $table->text('description')->nullable(); // Para serviços customizados
             $table->timestamps();
         });
     }
